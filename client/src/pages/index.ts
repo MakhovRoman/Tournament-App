@@ -1,0 +1,1 @@
+export const SignInPage = () => import('./sing-in')
