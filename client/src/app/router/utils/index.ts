@@ -1,1 +1,0 @@
-export { rootRoute } from 'createRootRoute.tsx';

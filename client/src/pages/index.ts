@@ -1,1 +1,1 @@
-export const SignInPage = () => import('./sing-in')
+export {SignIn} from './sing-in';
