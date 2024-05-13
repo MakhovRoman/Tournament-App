@@ -9,9 +9,19 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, '/src'),
-      '@components': resolve(__dirname, '/src/components'),
-      '@pages': resolve(__dirname, '/src/pages'),
-      '@routes': resolve(__dirname, '/src/routes')
+      '@components': resolve(__dirname, './src/components'),
+      '@pages': resolve(__dirname, './src/pages'),
+      '@routes': resolve(__dirname, './src/routes'),
+      '@theme': resolve(__dirname, './src/theme')
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "@theme/main.scss";
+        `
+      }
     }
   }
 })

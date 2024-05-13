@@ -1,4 +1,4 @@
-import { AuthComponent } from "@/components/auth-layout";
+import { AuthComponent } from "@components/auth-layout";
 
 export const SignIn = () => {
     return (
