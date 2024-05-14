@@ -1,10 +1,10 @@
 import styles from "./auth-layout.module.scss";
 
-type AuthComponentType = {
+type AuthLayoutType = {
     children: React.ReactNode
 }
 
-export const AuthComponent = ({children}: AuthComponentType) => {
+export const AuthLayout = ({children}: AuthLayoutType) => {
     return (
         <section className={styles.authLayout}>
             {children}
