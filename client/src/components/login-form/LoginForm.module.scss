@@ -2,7 +2,11 @@
     display: flex;
     flex-direction: column;
     width: 350px;
-    height: 300px;
+    min-height: 300px;
+
+    &__field-wrapper {
+        min-height: 100px;
+    }
 
     &__button {
         margin-top: auto;

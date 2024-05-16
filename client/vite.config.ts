@@ -12,7 +12,8 @@ export default defineConfig({
       '@components': resolve(__dirname, './src/components'),
       '@pages': resolve(__dirname, './src/pages'),
       '@routes': resolve(__dirname, './src/routes'),
-      '@theme': resolve(__dirname, './src/theme')
+      '@theme': resolve(__dirname, './src/theme'),
+      '@utils': resolve(__dirname, './src/utils'),
     }
   },
   css: {

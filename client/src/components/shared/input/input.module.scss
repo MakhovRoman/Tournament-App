@@ -1,10 +1,7 @@
 .input {
-  height: 42px;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 12px;
+  @include form-UI;
   border: 2px solid #C4C4C4;
-  padding: 12px 5px;
+
   font-size: 14px;
   font-weight: 400;
 

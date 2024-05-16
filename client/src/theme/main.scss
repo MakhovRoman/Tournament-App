@@ -1,4 +1,5 @@
 @import "./colors.scss";
+@import "./mixins.scss";
 
 // reset default styles
 
@@ -18,5 +19,5 @@ button, input {
 // set base font
 
 html {
-    font-family: "Poppins";
+    font-family: "Roboto";
 }

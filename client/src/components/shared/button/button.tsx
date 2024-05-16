@@ -10,7 +10,8 @@ export enum ButtonVariants {
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     className?: string;
-    variant: ButtonVariants
+    variant: ButtonVariants;
+    disabled?: boolean;
 }
 
 export const Button = ({
@@ -18,6 +19,7 @@ export const Button = ({
     type = 'submit',
     className = '',
     variant,
+    disabled = false,
     ...props
 }: ButtonProps) => {
     return (
@@ -27,7 +29,8 @@ export const Button = ({
                 styles.button,
                 {
                     [className]: className,
-                    [styles['button__primary']]: variant === ButtonVariants.PRIMARY,
+                    [styles['button__disabled']]: disabled,
+                    [styles['button__primary']]: variant === ButtonVariants.PRIMARY && !disabled,
                     [styles['button__secondary']]: variant === ButtonVariants.SECONDARY
                 }
             )}
