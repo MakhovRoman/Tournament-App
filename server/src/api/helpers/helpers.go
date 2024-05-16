@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	database "server/src/db"
 )
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Welcome to homepage!")
+	database.Connect()
 }
 
 func TestHandler(w http.ResponseWriter, r *http.Request) {
@@ -25,5 +27,6 @@ func TestHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(jsonResp)
+
 	return
 }

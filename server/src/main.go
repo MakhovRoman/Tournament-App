@@ -17,7 +17,8 @@ func main() {
 
 	err := http.ListenAndServe(fmt.Sprintf(":%d", PORT), nil)
 	if err != nil {
-		log.Fatalf("Iternal error. %s", err)
+		log.Fatalf("Internal error. %s", err)
 		return
 	}
+
 }
