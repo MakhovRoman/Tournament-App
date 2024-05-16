@@ -1,40 +1,50 @@
-import {ChangeEvent, ChangeEventHandler, forwardRef, HTMLInputTypeAttribute} from "react";
+import { ChangeEvent, ChangeEventHandler, forwardRef, HTMLInputTypeAttribute, InputHTMLAttributes} from "react";
 import clsx from 'clsx';
 import styles from './input.module.scss';
 import {UseFormSetValue} from "react-hook-form";
 
-type InputProps = {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     type?: HTMLInputTypeAttribute,
     placeholder?: string,
+    labelText?: string,
     className?: string,
-    onChange?: ChangeEvent<HTMLInputElement> | undefined,
+    onChange?: ChangeEventHandler<HTMLInputElement> | undefined,
     setValue?: UseFormSetValue<any>,
 };
 
-export const Input = forwardRef<HTMLInputTypeAttribute, InputProps>(function Input({
-    type = "text",
-    placeholder = '',
-    className = '',
-    onChange,
-    setValue,
-    ...props
-}: InputProps) {
-    const handleChange = (e: ChangeEventHandler<HTMLInputElement>) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+    {
+        type = "text",
+        labelText,
+        placeholder = '',
+        className = '',
+        onChange,
+        setValue,
+        ...props
+    },
+    ref
+) {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (typeof onChange === 'function') {
             onChange(e);
         }
     }
 
     return (
-        <input
-            type={type}
-            placeholder={placeholder}
-            className={clsx({
-                [className]: className,
-                [styles.input]: true
-            })}
-            onChange={handleChange}
-            {...props}
-        />
+        <div className={styles['input-wrapper']}>
+            {labelText &&
+                <label className={styles['input-label']}>{labelText}</label>
+            }
+            <input
+                type={type}
+                placeholder={placeholder}
+                className={clsx({
+                    [className]: className,
+                    [styles.input]: true
+                })}
+                onChange={handleChange}
+                {...props}
+            />
+        </div>
     )
 })

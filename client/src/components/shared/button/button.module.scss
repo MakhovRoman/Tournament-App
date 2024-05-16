@@ -1,0 +1,13 @@
+.button {
+    height: 42px;
+    width: 100%;
+    padding: 12px 5px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+
+    &__primary {
+        color: white;
+        background-color: $button-primary-bg;
+    }
+}
