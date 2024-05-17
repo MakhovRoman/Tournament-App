@@ -3,6 +3,7 @@ import { Input } from "@components/shared/input";
 import { Controller, useForm } from "react-hook-form";
 
 import { checkDisabledSubmitButton, setPlaceholder } from "../helpers";
+import { FormLayout } from "../layouts/form";
 import { Button } from "../shared/button";
 import { ButtonVariants } from "../shared/button";
 import { InputMessage } from "../shared/input-message";
@@ -38,7 +39,7 @@ export const LoginForm = () => {
 		checkDisabledSubmitButton(LoginFieldsList, dirtyFields) || Object.keys(errors).length > 0;
 
 	return (
-		<form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
+		<FormLayout submitHandler={handleSubmit(submitHandler)} className={styles.form}>
 			<div className={styles["form__field-wrapper"]}>
 				<Controller
 					control={control}
@@ -93,6 +94,6 @@ export const LoginForm = () => {
 			>
 				Submit
 			</Button>
-		</form>
+		</FormLayout>
 	);
 };
