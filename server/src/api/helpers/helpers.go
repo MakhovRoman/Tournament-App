@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	database "server/src/db"
+	"server/src/database"
 )
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
