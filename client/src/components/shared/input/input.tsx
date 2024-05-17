@@ -32,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 		<div className={styles["input-wrapper"]}>
 			{labelText && <label className={styles["input-label"]}>{labelText}</label>}
 			<input
+				ref={ref}
 				type={type}
 				placeholder={placeholder}
 				className={clsx({
