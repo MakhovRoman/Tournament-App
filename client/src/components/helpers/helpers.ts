@@ -1,21 +1,21 @@
-import { FormStateProxy } from "react-hook-form";
+import type { FormStateProxy } from "react-hook-form";
 
 export const setPlaceholder = (fieldName: string) => {
-    return `Enter your ${fieldName}`;
-}
+	return `Enter your ${fieldName}`;
+};
 
 export const checkDisabledSubmitButton = <T extends PropertyKey>(
-    fields: T[],
-    dirtyFields: FormStateProxy['dirtyFields']
+	fields: T[],
+	dirtyFields: FormStateProxy["dirtyFields"],
 ) => {
-    let result = false;
+	let result = false;
 
-    for(const prop of fields) {
-        if(!Object.hasOwn(dirtyFields, prop)) {
-            result = true;
-            break;
-        }
-    }
+	for (const prop of fields) {
+		if (!Object.hasOwn(dirtyFields, prop)) {
+			result = true;
+			break;
+		}
+	}
 
-    return result;
-}
+	return result;
+};
