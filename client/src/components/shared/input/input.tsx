@@ -19,7 +19,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-	{ type = "text", labelText, placeholder = "", className = "", onChange, setValue, ...props },
+	{
+		type = "text",
+		labelText,
+		placeholder = "",
+		className = "",
+		onChange,
+		setValue,
+		...props
+	},
 	ref,
 ) {
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

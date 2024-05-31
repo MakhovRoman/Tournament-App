@@ -1,4 +1,4 @@
-import { LoginFields } from "@/constants";
+import { LoginFields, RegisterFields } from "@/constants";
 import { RegEx } from "@/utils/regex";
 
 export const LoginFormValidateRules = {
@@ -22,6 +22,13 @@ export const LoginFormValidateRules = {
 			message:
 				"значение должно соответствовать формату 8-16 символов, содержащих цифры, буквы (заглавные и строчные) и специальные символы",
 		},
+	},
+};
+
+export const RegisterFormValidateRules = {
+	[RegisterFields.EMAIL]: {
+		...LoginFormValidateRules[LoginFields.EMAIL],
+		...LoginFormValidateRules[LoginFields.PASSWORD],
 	},
 };
 

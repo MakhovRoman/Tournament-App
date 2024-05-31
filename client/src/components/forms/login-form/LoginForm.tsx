@@ -2,11 +2,13 @@ import { LoginFields } from "@/constants";
 import { Input } from "@components/shared/input";
 import { Controller, useForm } from "react-hook-form";
 
-import { checkDisabledSubmitButton, setPlaceholder } from "../helpers";
-import { FormLayout } from "../layouts/form";
-import { Button } from "../shared/button";
-import { ButtonVariants } from "../shared/button";
-import { InputMessage } from "../shared/input-message";
+import { FormFieldLayout } from "@/components/layouts/form-field";
+import { checkDisabledSubmitButton, setPlaceholder } from "../../helpers";
+import { FormLayout } from "../../layouts/form";
+import { Button } from "../../shared/button";
+import { ButtonVariants } from "../../shared/button";
+import { InputMessage } from "../../shared/input-message";
+import { RedirectBlock } from "../../shared/redirect-block";
 import styles from "./LoginForm.module.scss";
 import { LoginFieldsList, LoginFormValidateRules } from "./constants";
 
@@ -36,11 +38,12 @@ export const LoginForm = () => {
 	console.log(errors);
 
 	const isDisabled =
-		checkDisabledSubmitButton(LoginFieldsList, dirtyFields) || Object.keys(errors).length > 0;
+		checkDisabledSubmitButton(LoginFieldsList, dirtyFields) ||
+		Object.keys(errors).length > 0;
 
 	return (
 		<FormLayout submitHandler={handleSubmit(submitHandler)} className={styles.form}>
-			<div className={styles["form__field-wrapper"]}>
+			<FormFieldLayout>
 				<Controller
 					control={control}
 					name={LoginFields.EMAIL}
@@ -63,8 +66,8 @@ export const LoginForm = () => {
 						<InputMessage error>{errors[LoginFields.EMAIL].message}</InputMessage>
 					)}
 				</>
-			</div>
-			<div className={styles["form__field-wrapper"]}>
+			</FormFieldLayout>
+			<FormFieldLayout>
 				<Controller
 					control={control}
 					name={LoginFields.PASSWORD}
@@ -86,7 +89,7 @@ export const LoginForm = () => {
 						<InputMessage error>{errors[LoginFields.PASSWORD].message}</InputMessage>
 					)}
 				</>
-			</div>
+			</FormFieldLayout>
 			<Button
 				className={styles.form__button}
 				variant={ButtonVariants.PRIMARY}
@@ -94,6 +97,11 @@ export const LoginForm = () => {
 			>
 				Submit
 			</Button>
+			<RedirectBlock
+				description="Don't have an account?"
+				linkText="Sign Up!"
+				href={"/register"}
+			/>
 		</FormLayout>
 	);
 };

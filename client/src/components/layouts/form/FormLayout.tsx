@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import type { FormEventHandler } from "react";
-import { SubmitErrorHandler, SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import styles from "./FormLayout.module.scss";
 
 type FormLayoutProps = {
@@ -9,9 +8,17 @@ type FormLayoutProps = {
 	submitHandler: FormEventHandler<HTMLFormElement>;
 };
 
-export const FormLayout = ({ children, className = "", submitHandler }: FormLayoutProps) => {
+export const FormLayout = ({
+	children,
+	className = "",
+	submitHandler,
+}: FormLayoutProps): JSX.Element => {
 	return (
-		<form onSubmit={submitHandler} className={clsx(styles.formLayout, { [className]: className })}>
+		<form
+			onSubmit={submitHandler}
+			className={clsx(styles.formLayout, { [className]: className })}
+			id="formName"
+		>
 			{children}
 		</form>
 	);

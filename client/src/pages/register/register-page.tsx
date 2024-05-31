@@ -1,7 +1,6 @@
-import { Title } from "@/components/shared/title/title";
-
+import { RegisterForm } from "@/components/forms/register-form";
 import { AuthLayout } from "@/components/layouts";
-import { RegisterForm } from "@/components/register-form";
+import { Title } from "@/components/shared/title/title";
 import styles from "./register-page.module.scss";
 
 export const RegisterPage = () => {

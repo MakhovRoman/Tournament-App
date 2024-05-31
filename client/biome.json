@@ -10,7 +10,18 @@
 		}
 	},
 	"formatter": {
-		"lineWidth": 100
+		"lineWidth": 90,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineEnding": "lf"
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"trailingComma": "all",
+			"semicolons": "always",
+			"bracketSpacing": true
+		}
 	},
 	"files": {
 		"ignore": ["./src/routeTree.gen.ts"]
