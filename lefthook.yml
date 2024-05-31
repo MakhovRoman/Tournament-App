@@ -36,8 +36,11 @@
 pre-commit:
   parallel: true
   commands:
-    lint:
-      run: yarn lint
+    client-lint:
+      root: "client/"
+      glob: "*.{js,ts,tsx}"
+      run: yarn lint {staged_files}
+      staged_fixed: true
     # check:
     #   glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
     #   run: npx biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true ./client/src && git update-index --again
