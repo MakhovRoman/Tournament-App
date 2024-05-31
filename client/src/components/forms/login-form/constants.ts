@@ -28,6 +28,8 @@ export const LoginFormValidateRules = {
 export const RegisterFormValidateRules = {
 	[RegisterFields.EMAIL]: {
 		...LoginFormValidateRules[LoginFields.EMAIL],
+	},
+	[RegisterFields.PASSWORD]: {
 		...LoginFormValidateRules[LoginFields.PASSWORD],
 	},
 };

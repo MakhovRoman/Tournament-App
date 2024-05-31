@@ -9,6 +9,7 @@ import { RegisterFormValidateRules } from "../login-form/constants";
 
 type RegisterFormFields = {
 	[RegisterFields.EMAIL]: string;
+	[RegisterFields.PASSWORD]: string;
 };
 
 export const RegisterForm = () => {
@@ -21,6 +22,7 @@ export const RegisterForm = () => {
 		mode: "onChange",
 		defaultValues: {
 			[RegisterFields.EMAIL]: "",
+			[RegisterFields.PASSWORD]: "",
 		},
 	});
 
@@ -53,6 +55,24 @@ export const RegisterForm = () => {
 						<InputMessage error>{errors[RegisterFields.EMAIL].message}</InputMessage>
 					)}
 				</>
+			</FormFieldLayout>
+			<FormFieldLayout>
+				<Controller
+					control={control}
+					name={RegisterFields.PASSWORD}
+					rules={RegisterFormValidateRules[RegisterFields.PASSWORD]}
+					render={({ field }) => (
+						<Input
+							type={field.name}
+							labelText={RegisterFields.PASSWORD}
+							placeholder={setPlaceholder(field.name)}
+							onChange={(e) => {
+								setValue(RegisterFields.PASSWORD, e.target.value);
+								field.onChange();
+							}}
+						/>
+					)}
+				/>
 			</FormFieldLayout>
 		</FormLayout>
 	);
