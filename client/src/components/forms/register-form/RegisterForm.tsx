@@ -73,6 +73,11 @@ export const RegisterForm = () => {
 						/>
 					)}
 				/>
+				<>
+					{errors[RegisterFields.PASSWORD] && (
+						<InputMessage error>{errors[RegisterFields.PASSWORD].message}</InputMessage>
+					)}
+				</>
 			</FormFieldLayout>
 		</FormLayout>
 	);
