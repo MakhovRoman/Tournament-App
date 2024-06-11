@@ -32,6 +32,9 @@ export const RegisterFormValidateRules = {
 	[RegisterFields.PASSWORD]: {
 		...LoginFormValidateRules[LoginFields.PASSWORD],
 	},
+	[RegisterFields.CONFIRM_PASSWORD]: {
+		...LoginFormValidateRules[LoginFields.PASSWORD],
+	},
 };
 
 export const LoginFieldsList = [LoginFields.EMAIL, LoginFields.PASSWORD];
