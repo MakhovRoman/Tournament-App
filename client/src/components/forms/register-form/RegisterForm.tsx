@@ -1,12 +1,13 @@
-import { setPlaceholder } from "@/components/helpers";
+import { checkDisabledSubmitButton, setPlaceholder } from "@/components/helpers";
 import { FormLayout } from "@/components/layouts";
 import { FormFieldLayout } from "@/components/layouts/form-field";
+import { Button, ButtonVariants } from "@/components/shared/button";
 import { Input } from "@/components/shared/input";
 import { InputMessage } from "@/components/shared/input-message";
 import { RegisterFields } from "@/constants";
 import { useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { RegisterFormValidateRules } from "../login-form/constants";
+import { RegisterFieldsList, RegisterFormValidateRules } from "../login-form/constants";
 
 type RegisterFormFields = {
 	[RegisterFields.EMAIL]: string;
@@ -21,9 +22,7 @@ export const RegisterForm = () => {
 		control,
 		handleSubmit,
 		setValue,
-		setError,
-		clearErrors,
-		formState: { errors },
+		formState: { errors, dirtyFields },
 	} = useForm<RegisterFormFields>({
 		mode: "onChange",
 		defaultValues: {
@@ -33,11 +32,15 @@ export const RegisterForm = () => {
 		},
 	});
 
+	const isDisabled =
+		checkDisabledSubmitButton(RegisterFieldsList, dirtyFields) ||
+		Object.keys(errors).length > 0;
+
+	console.log(isDisabled, errors, dirtyFields);
+
 	const submitHandler = (data: RegisterFormFields) => {
 		console.log(data);
 	};
-
-	console.log(errors[RegisterFields.CONFIRM_PASSWORD]?.message);
 
 	return (
 		<FormLayout submitHandler={handleSubmit(submitHandler)}>
@@ -124,6 +127,9 @@ export const RegisterForm = () => {
 					)}
 				</>
 			</FormFieldLayout>
+			<Button variant={ButtonVariants.PRIMARY} disabled={isDisabled}>
+				Submit
+			</Button>
 		</FormLayout>
 	);
 };

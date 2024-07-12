@@ -45,3 +45,11 @@ export const RegisterFormValidateRules = {
 };
 
 export const LoginFieldsList = [LoginFields.EMAIL, LoginFields.PASSWORD];
+export const RegisterFieldsList = [
+	RegisterFields.CONFIRM_PASSWORD,
+	RegisterFields.EMAIL,
+	// RegisterFields.FIRST_NAME,
+	// RegisterFields.LAST_NAME,
+	RegisterFields.PASSWORD,
+	// RegisterFields.PHONE_NUMBER,
+];
