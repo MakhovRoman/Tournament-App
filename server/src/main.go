@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	log.SetFlags(log.Ldate)
+	log.Printf("Start server")
 
 	http.HandleFunc("/", helpers.RootHandler)
 	http.HandleFunc("/test", helpers.TestHandler)
@@ -20,5 +22,4 @@ func main() {
 		log.Fatalf("Internal error. %s", err)
 		return
 	}
-
 }

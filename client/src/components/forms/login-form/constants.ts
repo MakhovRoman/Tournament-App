@@ -27,20 +27,22 @@ export const LoginFormValidateRules = {
 
 export const RegisterFormValidateRules = {
 	[RegisterFields.EMAIL]: {
-		required: {
-			value: true,
-			message: "Поле обязательно для заполнения",
-		},
-		pattern: {
-			value: RegEx.EMAIL,
-			message: "значение должно соответствовать формату example@example.ru",
-		},
+		...LoginFormValidateRules[LoginFields.EMAIL],
 	},
 	[RegisterFields.PASSWORD]: {
 		...LoginFormValidateRules[LoginFields.PASSWORD],
 	},
-	[RegisterFields.CONFIRM_PASSWORD]: {
-		...LoginFormValidateRules[LoginFields.PASSWORD],
+	[RegisterFields.FIRST_NAME]: {
+		required: {
+			value: true,
+			message: "Поле обязательно для заполнения",
+		},
+	},
+	[RegisterFields.LAST_NAME]: {
+		required: {
+			value: true,
+			message: "Поле обязательно для заполнения",
+		},
 	},
 };
 
@@ -48,8 +50,8 @@ export const LoginFieldsList = [LoginFields.EMAIL, LoginFields.PASSWORD];
 export const RegisterFieldsList = [
 	RegisterFields.CONFIRM_PASSWORD,
 	RegisterFields.EMAIL,
-	// RegisterFields.FIRST_NAME,
-	// RegisterFields.LAST_NAME,
+	RegisterFields.FIRST_NAME,
+	RegisterFields.LAST_NAME,
 	RegisterFields.PASSWORD,
 	// RegisterFields.PHONE_NUMBER,
 ];

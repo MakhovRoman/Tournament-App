@@ -5,15 +5,12 @@ import { Button, ButtonVariants } from "@/components/shared/button";
 import { Input } from "@/components/shared/input";
 import { InputMessage } from "@/components/shared/input-message";
 import { RegisterFields } from "@/constants";
+import { transformFieldName } from "@utils/transformFieldName.ts";
 import { useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { RegisterFieldsList, RegisterFormValidateRules } from "../login-form/constants";
 
-type RegisterFormFields = {
-	[RegisterFields.EMAIL]: string;
-	[RegisterFields.PASSWORD]: string;
-	[RegisterFields.CONFIRM_PASSWORD]: string;
-};
+type RegisterFormFields = Record<RegisterFields, string>;
 
 export const RegisterForm = () => {
 	const passwordRef = useRef<HTMLInputElement>(null);
@@ -110,8 +107,10 @@ export const RegisterForm = () => {
 					render={({ field }) => (
 						<Input
 							type={RegisterFields.PASSWORD}
-							labelText={RegisterFields.CONFIRM_PASSWORD}
-							placeholder={setPlaceholder(field.name)}
+							labelText={transformFieldName(RegisterFields.CONFIRM_PASSWORD)}
+							placeholder={setPlaceholder(
+								transformFieldName(RegisterFields.CONFIRM_PASSWORD),
+							)}
 							onChange={(e) => {
 								setValue(RegisterFields.CONFIRM_PASSWORD, e.target.value);
 								field.onChange(e);
@@ -124,6 +123,52 @@ export const RegisterForm = () => {
 						<InputMessage error>
 							{errors[RegisterFields.CONFIRM_PASSWORD].message}
 						</InputMessage>
+					)}
+				</>
+			</FormFieldLayout>
+			<FormFieldLayout>
+				<Controller
+					control={control}
+					name={RegisterFields.FIRST_NAME}
+					rules={RegisterFormValidateRules[RegisterFields.FIRST_NAME]}
+					render={({ field }) => (
+						<Input
+							type={"text"}
+							labelText={transformFieldName(RegisterFields.FIRST_NAME)}
+							placeholder={setPlaceholder(transformFieldName(RegisterFields.FIRST_NAME))}
+							onChange={(e) => {
+								setValue(RegisterFields.FIRST_NAME, e.target.value);
+								field.onChange(e);
+							}}
+						/>
+					)}
+				/>
+				<>
+					{errors[RegisterFields.FIRST_NAME] && (
+						<InputMessage error>{errors[RegisterFields.FIRST_NAME].message}</InputMessage>
+					)}
+				</>
+			</FormFieldLayout>
+			<FormFieldLayout>
+				<Controller
+					control={control}
+					name={RegisterFields.LAST_NAME}
+					rules={RegisterFormValidateRules[RegisterFields.LAST_NAME]}
+					render={({ field }) => (
+						<Input
+							type={"text"}
+							labelText={transformFieldName(RegisterFields.LAST_NAME)}
+							placeholder={setPlaceholder(transformFieldName(RegisterFields.LAST_NAME))}
+							onChange={(e) => {
+								setValue(RegisterFields.LAST_NAME, e.target.value);
+								field.onChange(e);
+							}}
+						/>
+					)}
+				/>
+				<>
+					{errors[RegisterFields.LAST_NAME] && (
+						<InputMessage error>{errors[RegisterFields.LAST_NAME].message}</InputMessage>
 					)}
 				</>
 			</FormFieldLayout>

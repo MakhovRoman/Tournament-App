@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./input-message.module.scss";
 
-export type InputMessageProps = {
+type InputMessageProps = {
 	children: React.ReactNode;
 	error?: boolean;
 };

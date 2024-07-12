@@ -9,7 +9,7 @@ import {
 import type { UseFormSetValue } from "react-hook-form";
 import styles from "./input.module.scss";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	type?: HTMLInputTypeAttribute;
 	placeholder?: string;
 	labelText?: string;

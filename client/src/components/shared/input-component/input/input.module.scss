@@ -1,0 +1,30 @@
+.input {
+  @include form-UI;
+  border: 2px solid #C4C4C4;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+
+  &::placeholder {
+    font-weight: 300;
+  }
+
+  &-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    & + & {
+      margin-top: 30px;
+    }
+  }
+
+  &-label {
+    text-transform: capitalize;
+    margin-bottom: 6px;
+  }
+}
