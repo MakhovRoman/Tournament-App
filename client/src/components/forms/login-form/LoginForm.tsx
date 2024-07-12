@@ -35,8 +35,6 @@ export const LoginForm = () => {
 		console.log(data);
 	};
 
-	console.log(errors);
-
 	const isDisabled =
 		checkDisabledSubmitButton(LoginFieldsList, dirtyFields) ||
 		Object.keys(errors).length > 0;

@@ -23,8 +23,8 @@ export const RegisterForm = () => {
 		setValue,
 		setError,
 		clearErrors,
-		formState: { errors, dirtyFields },
-	} = useForm({
+		formState: { errors },
+	} = useForm<RegisterFormFields>({
 		mode: "onChange",
 		defaultValues: {
 			[RegisterFields.EMAIL]: "",
@@ -36,6 +36,8 @@ export const RegisterForm = () => {
 	const submitHandler = (data: RegisterFormFields) => {
 		console.log(data);
 	};
+
+	console.log(errors[RegisterFields.CONFIRM_PASSWORD]?.message);
 
 	return (
 		<FormLayout submitHandler={handleSubmit(submitHandler)}>
@@ -52,7 +54,7 @@ export const RegisterForm = () => {
 							placeholder={setPlaceholder(field.name)}
 							onChange={(e) => {
 								setValue(RegisterFields.EMAIL, e.target.value);
-								field.onChange();
+								field.onChange(e);
 							}}
 						/>
 					)}
@@ -76,7 +78,7 @@ export const RegisterForm = () => {
 							ref={passwordRef}
 							onChange={(e) => {
 								setValue(RegisterFields.PASSWORD, e.target.value);
-								field.onChange();
+								field.onChange(e);
 							}}
 						/>
 					)}
@@ -92,20 +94,14 @@ export const RegisterForm = () => {
 					control={control}
 					name={RegisterFields.CONFIRM_PASSWORD}
 					rules={{
-						// ...RegisterFormValidateRules[RegisterFields.CONFIRM_PASSWORD],
-						validate: (value) => {
-							console.log(value);
-							if (value !== passwordRef.current?.value) {
-								setError(RegisterFields.CONFIRM_PASSWORD, {
-									type: "custom",
-									message: "Пароли не совпадают",
-								});
+						validate: {
+							match: (value) => {
+								if (value !== passwordRef.current?.value) {
+									return "Пароли не совпадают";
+								}
 
-								return;
-							}
-
-							clearErrors(RegisterFields.CONFIRM_PASSWORD);
-							return true;
+								return true;
+							},
 						},
 					}}
 					render={({ field }) => (
@@ -115,7 +111,7 @@ export const RegisterForm = () => {
 							placeholder={setPlaceholder(field.name)}
 							onChange={(e) => {
 								setValue(RegisterFields.CONFIRM_PASSWORD, e.target.value);
-								field.onChange();
+								field.onChange(e);
 							}}
 						/>
 					)}

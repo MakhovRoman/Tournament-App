@@ -27,7 +27,14 @@ export const LoginFormValidateRules = {
 
 export const RegisterFormValidateRules = {
 	[RegisterFields.EMAIL]: {
-		...LoginFormValidateRules[LoginFields.EMAIL],
+		required: {
+			value: true,
+			message: "Поле обязательно для заполнения",
+		},
+		pattern: {
+			value: RegEx.EMAIL,
+			message: "значение должно соответствовать формату example@example.ru",
+		},
 	},
 	[RegisterFields.PASSWORD]: {
 		...LoginFormValidateRules[LoginFields.PASSWORD],
