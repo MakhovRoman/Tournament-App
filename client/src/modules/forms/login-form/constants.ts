@@ -1,5 +1,5 @@
 import { LoginFields, RegisterFields } from "@/constants";
-import { RegEx } from "@/utils/regex";
+import { RegEx } from "@utils/regex.ts";
 
 export const LoginFormValidateRules = {
 	[LoginFields.EMAIL]: {

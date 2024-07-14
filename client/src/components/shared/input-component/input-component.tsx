@@ -2,36 +2,42 @@ import { setPlaceholder } from "@components/helpers";
 import { FormFieldLayout } from "@components/layouts/form-field";
 import { Input } from "@components/shared/input";
 import type { InputComponentType } from "@components/shared/input-component/types.ts";
-import { Controller } from "react-hook-form";
+import { InputMessage } from "@components/shared/input-message";
+import { transformFieldName } from "@utils/transformFieldName.ts";
+import { Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
-export const InputComponent = ({
+export const InputComponent = <T extends FieldValues>({
 	control,
 	name,
 	rules,
 	error,
 	type,
-	placeholder,
-	labelText,
-	className,
-	onChange,
 	setValue,
-}: InputComponentType) => {
+	inputMode,
+	errors,
+}: InputComponentType<T>) => {
 	return (
 		<FormFieldLayout>
 			<Controller
 				control={control}
-				name={name}
+				name={name as FieldPath<T>}
 				rules={rules}
 				render={({ field }) => (
 					<Input
-						type={field.name}
-						inputMode={type}
-						labelText={name}
-						placeholder={setPlaceholder(field.name)}
-						onChange={(e) => {}}
+						type={type}
+						inputMode={inputMode}
+						labelText={transformFieldName(name)}
+						placeholder={setPlaceholder(transformFieldName(name))}
+						onChange={(e) => {
+							setValue(name, e.target.value);
+							field.onChange(e);
+						}}
 					/>
 				)}
 			/>
+			{errors[name]?.message && (
+				<InputMessage error={error}>{errors[name]?.message as string}</InputMessage>
+			)}
 		</FormFieldLayout>
 	);
 };

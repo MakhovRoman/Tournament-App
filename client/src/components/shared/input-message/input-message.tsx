@@ -2,7 +2,7 @@ import clsx from "clsx";
 import styles from "./input-message.module.scss";
 
 export type InputMessageProps = {
-	children: React.ReactNode;
+	children: React.ReactNode | string | undefined;
 	error?: boolean;
 };
 

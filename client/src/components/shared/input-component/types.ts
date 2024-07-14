@@ -1,11 +1,12 @@
-import type { InputMessageProps } from "@components/shared/input-message/input-message.tsx";
+import type { LoginFields, RegisterFields } from "@/constants";
 import type { InputProps } from "@components/shared/input/input.tsx";
-import type { Control, SetFieldValue } from "react-hook-form";
+import type { Control, FieldErrors, FieldValues, SetFieldValue } from "react-hook-form";
 
-export interface InputComponentType extends InputProps {
-	control: Control;
+export interface InputComponentType<T extends FieldValues> extends InputProps {
+	control: Control<T>;
 	setValue: SetFieldValue<any>;
-	name: string;
+	name: RegisterFields | LoginFields;
 	rules: Record<string, unknown>;
-	error?: Pick<InputMessageProps, "error">;
+	error?: boolean;
+	errors: FieldErrors;
 }

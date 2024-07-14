@@ -1,16 +1,20 @@
-import { checkDisabledSubmitButton, setPlaceholder } from "@/components/helpers";
-import { FormLayout } from "@/components/layouts";
-import { FormFieldLayout } from "@/components/layouts/form-field";
-import { Button, ButtonVariants } from "@/components/shared/button";
-import { Input } from "@/components/shared/input";
-import { InputMessage } from "@/components/shared/input-message";
 import { RegisterFields } from "@/constants";
+import { checkDisabledSubmitButton, setPlaceholder } from "@components/helpers";
+import { FormLayout } from "@components/layouts";
+import { FormFieldLayout } from "@components/layouts/form-field";
+import { Button, ButtonVariants } from "@components/shared/button";
+import { Input } from "@components/shared/input";
+import { InputComponent } from "@components/shared/input-component";
+import { InputMessage } from "@components/shared/input-message";
+import {
+	RegisterFieldsList,
+	RegisterFormValidateRules,
+} from "@modules/forms/login-form/constants.ts";
 import { transformFieldName } from "@utils/transformFieldName.ts";
 import { useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { RegisterFieldsList, RegisterFormValidateRules } from "../login-form/constants";
 
-type RegisterFormFields = Record<RegisterFields, string>;
+export type RegisterFormFields = Record<RegisterFields, string>;
 
 export const RegisterForm = () => {
 	const passwordRef = useRef<HTMLInputElement>(null);
@@ -33,14 +37,20 @@ export const RegisterForm = () => {
 		checkDisabledSubmitButton(RegisterFieldsList, dirtyFields) ||
 		Object.keys(errors).length > 0;
 
-	console.log(isDisabled, errors, dirtyFields);
-
 	const submitHandler = (data: RegisterFormFields) => {
 		console.log(data);
 	};
 
 	return (
 		<FormLayout submitHandler={handleSubmit(submitHandler)}>
+			<InputComponent
+				control={control}
+				name={RegisterFields.EMAIL}
+				type={"email"}
+				rules={RegisterFormValidateRules[RegisterFields.EMAIL]}
+				errors={errors}
+				setValue={setValue}
+			/>
 			<FormFieldLayout>
 				<Controller
 					control={control}

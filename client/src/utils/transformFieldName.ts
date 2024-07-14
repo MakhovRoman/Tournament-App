@@ -1,5 +1,9 @@
 import type { LoginFields, RegisterFields } from "@/constants";
 
 export const transformFieldName = (field: RegisterFields | LoginFields) => {
-	return field.split("_").join(" ");
+	if (field.includes("_")) {
+		return field.split("_").join(" ");
+	}
+
+	return field;
 };
