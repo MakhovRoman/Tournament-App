@@ -4,7 +4,7 @@ import type { Control, FieldErrors, FieldValues, SetFieldValue } from "react-hoo
 
 export interface InputComponentType<T extends FieldValues> extends InputProps {
 	control: Control<T>;
-	setValue: SetFieldValue<any>;
+	setValue: SetFieldValue<T>;
 	name: RegisterFields | LoginFields;
 	rules: Record<string, unknown>;
 	error?: boolean;
