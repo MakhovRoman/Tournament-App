@@ -1,3 +1,4 @@
+import { RedirectBlock } from "@/components/shared/redirect-block";
 import { RegisterFields } from "@/constants";
 import { checkDisabledSubmitButton, setPlaceholder } from "@components/helpers";
 import { FormLayout } from "@components/layouts";
@@ -99,6 +100,7 @@ export const RegisterForm = () => {
 			<Button variant={ButtonVariants.PRIMARY} disabled={isDisabled}>
 				Submit
 			</Button>
+			<RedirectBlock description="Have an account?" linkText="LogIn" href={"/login"} />
 		</FormLayout>
 	);
 };

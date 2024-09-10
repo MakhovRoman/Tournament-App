@@ -61,7 +61,7 @@ export const LoginForm = () => {
 			<RedirectBlock
 				description="Don't have an account?"
 				linkText="Sign Up!"
-				href={"/register"}
+				href={"/registration"}
 			/>
 		</FormLayout>
 	);

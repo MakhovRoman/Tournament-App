@@ -3,7 +3,7 @@ import clsx from "clsx";
 import styles from "./redirect-block.module.scss";
 
 type RedirectBlockProps = {
-	description: string;
+	description?: string;
 	linkText: string;
 	href: string;
 	className?: string;
@@ -17,10 +17,12 @@ export const RedirectBlock = ({
 }: RedirectBlockProps) => {
 	return (
 		<div className={clsx(styles.redirect, { [className]: className })}>
-			<p className={styles.redirect__description}>
-				{description}
-				&nbsp;
-			</p>
+			{description && (
+				<p className={styles.redirect__description}>
+					{description}
+					&nbsp;
+				</p>
+			)}
 			<Link to={href} className={styles.redirect__link}>
 				{linkText}
 			</Link>
