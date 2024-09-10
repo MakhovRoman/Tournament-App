@@ -1,19 +1,15 @@
 import { RedirectBlock } from "@/components/shared/redirect-block";
 import { RegisterFields } from "@/constants";
-import { checkDisabledSubmitButton, setPlaceholder } from "@components/helpers";
+import { checkDisabledSubmitButton } from "@components/helpers";
 import { FormLayout } from "@components/layouts";
-import { FormFieldLayout } from "@components/layouts/form-field";
 import { Button, ButtonVariants } from "@components/shared/button";
-import { Input } from "@components/shared/input";
 import { InputComponent } from "@components/shared/input-component";
-import { InputMessage } from "@components/shared/input-message";
 import {
 	RegisterFieldsList,
 	RegisterFormValidateRules,
 } from "@modules/forms/login-form/constants.ts";
-import { transformFieldName } from "@utils/transformFieldName.ts";
 import { useRef } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export type RegisterFormFields = Record<RegisterFields, string>;
 
