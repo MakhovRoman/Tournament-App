@@ -2,15 +2,15 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"server/src/api/helpers"
 	"server/src/config"
+
+	"github.com/gookit/slog"
 )
 
 func main() {
-	log.SetFlags(log.Ldate)
-	log.Printf("Start server")
+	slog.Info("Server starting")
 
 	http.HandleFunc("/", helpers.RootHandler)
 	http.HandleFunc("/test", helpers.TestHandler)
@@ -19,7 +19,7 @@ func main() {
 
 	err := http.ListenAndServe(fmt.Sprintf(":%d", PORT), nil)
 	if err != nil {
-		log.Fatalf("Internal error. %s", err)
+		slog.Error("Internal error. %s", err)
 		return
 	}
 }
