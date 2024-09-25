@@ -1,40 +1,33 @@
 package main
 
 import (
+	"server/cmd/router"
 	"server/cmd/utils"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
+type Data struct {
+	Body string `json:"body`
+}
+
 func main() {
-	// slog.Info("Server starting")
-
-	// http.HandleFunc("/", helpers.RootHandler)
-	// http.HandleFunc("/test", helpers.TestHandler)
-
-	// PORT := config.Load()
-
-	// err := http.ListenAndServe(fmt.Sprintf(":%d", PORT), nil)
-	// if err != nil {
-	// 	slog.Error("Internal error. %s", err)
-	// 	return
-	// }
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		AppName: "Tournament App",
+	})
 	app.Use(cors.New())
 
-	type Data struct {
-		Body string `json:"body`
-	}
+	// app.Get("/api", func(c *fiber.Ctx) error {
+	// 	body := Data{
+	// 		Body: "hello, world",
+	// 	}
 
-	app.Get("/api", func(c *fiber.Ctx) error {
-		body := Data{
-			Body: "hello, world",
-		}
+	// 	return c.JSON(body)
+	// })
 
-		return c.JSON(body)
-	})
+	router.SetupRouter(app)
 
-	port := utils.GetFormatPort()
-	app.Listen(port)
+	hostname := utils.GetHost()
+	app.Listen(hostname)
 }

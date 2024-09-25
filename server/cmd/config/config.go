@@ -1,21 +1,31 @@
 package config
 
 import (
-	"github.com/joho/godotenv"
+	"fmt"
 	"log"
 	"os"
-	"strconv"
+	"server/cmd/model"
+
+	"github.com/joho/godotenv"
 )
 
-func Load() int {
+func LoadConfig() *model.ConfigParams {
 	err := godotenv.Load()
-
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatalf("err loading: %v", err)
 	}
 
-	PORT := os.Getenv("PORT")
-	result, err := strconv.Atoi(PORT)
+	HOST, exHost := os.LookupEnv("HOST")
+	PORT, exPort := os.LookupEnv("PORT")
+
+	if !exHost || !exPort {
+		log.Fatal("err loading env variables")
+	}
+	fmt.Print(HOST)
+	result := &model.ConfigParams{
+		HOST: HOST,
+		PORT: PORT,
+	}
 
 	return result
 }
