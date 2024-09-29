@@ -8,8 +8,22 @@ const handleRequest = async () => {
 	console.log(data);
 };
 
-handleRequest();
+const handlePostRequest = async () => {
+	try {
+		const response = await fetch("/api/auth/login", {
+			method: "POST",
+			body: JSON.stringify({}),
+			headers: { "Content-Type": "application/json" },
+		});
+		const data = await response.json();
+		console.log(data);
+	} catch (error) {
+		console.log(error);
+	}
+};
 
+handleRequest();
+handlePostRequest();
 export const NotFoundPage = () => {
 	return (
 		<div className={styles.notFoundPage}>
