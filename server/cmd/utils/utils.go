@@ -6,8 +6,8 @@ import (
 )
 
 func GetHost() string {
-	config := config.LoadConfig()
-	host := fmt.Sprintf("%s:%s", config.HOST, config.PORT)
+	host := config.Config("HOST")
+	port := config.Config("PORT")
 
-	return host
+	return fmt.Sprintf("%s:%s", host, port)
 }

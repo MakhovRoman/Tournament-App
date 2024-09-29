@@ -8,11 +8,11 @@ import (
 
 func Hello(c *fiber.Ctx) error {
 	body := model.ApiRequest{
-		Status:  200,
+		Status:  "success",
 		Message: "Hello, i am ok",
 		Data:    nil,
 	}
 	c.GetRespHeader("Content-Type", "application/json")
 
-	return c.JSON(body)
+	return c.Status(fiber.StatusAccepted).JSON(body)
 }
