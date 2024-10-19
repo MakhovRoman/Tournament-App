@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"server/cmd/config"
+	"server/cmd/model"
 	"strconv"
 
 	"gorm.io/driver/postgres"
@@ -16,21 +17,22 @@ func ConnectDB() {
 	dbHost := config.Config("DB_HOST")
 	p := config.Config("DB_PORT")
 	dbPort, err := strconv.ParseUint(p, 10, 32)
-	dbUser := config.Config("DB_USER")
-	dbPassword := config.Config("DB_PASSWORD")
-	dbName := config.Config("DB_NAME")
+	dbUser := config.Config("POSTGRES_USER")
+	dbPassword := config.Config("POSTGRES_PASSWORD")
+	dbName := config.Config("POSTGRES_DB")
 
 	if err != nil {
-		log.Fatal("failed to parse database port")
+		log.Fatal("\nfailed to parse database port\n")
 	}
 
 	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", dbHost, dbPort, dbUser, dbPassword, dbName)
-	_, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
-		log.Fatal("failed to connect database")
+		log.Fatal("\nfailed to connect database\n")
 	}
 
-	fmt.Print("Connection opened to database")
-
+	fmt.Print("\nConnection opened to database\n")
+	DB.AutoMigrate(&model.UserModel{})
+	fmt.Print("Database Migrated\n")
 }

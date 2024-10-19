@@ -1,18 +1,16 @@
 import { Title } from "@/components/shared/title/title";
 import styles from "./not-found-page.module.scss";
 
-const handleRequest = async () => {
-	const response = await fetch("/api");
-	const data = await response.json();
-
-	console.log(data);
-};
-
 const handlePostRequest = async () => {
 	try {
-		const response = await fetch("/api/auth/login", {
+		const response = await fetch("/api/auth/register", {
 			method: "POST",
-			body: JSON.stringify({}),
+			body: JSON.stringify({
+				user_name: "Lol",
+				password: "kek",
+				email: "roman_stv@mail.ru",
+				role: "admin",
+			}),
 			headers: { "Content-Type": "application/json" },
 		});
 		const data = await response.json();
@@ -22,7 +20,6 @@ const handlePostRequest = async () => {
 	}
 };
 
-handleRequest();
 handlePostRequest();
 export const NotFoundPage = () => {
 	return (
