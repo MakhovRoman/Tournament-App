@@ -56,6 +56,12 @@ func isEmail(email string) bool {
 }
 
 // Login get user and password
+// @Summary
+// @Description login user
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Router /auth/login [post]
 func Login(c *fiber.Ctx) error {
 	type LoginInput struct {
 		Identity string `json:"identity"`
@@ -127,11 +133,13 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusUnauthorized).JSON(body)
 	}
 
-	token := jwt.New(jwt.SigningMethodHS256)
-	claims := token.Claims.(jwt.MapClaims)
-	claims["username"] = userData.Username
-	claims["email"] = userData.Email
-	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
+	claims := jwt.MapClaims{
+		"username": userData.Username,
+		"email":    userData.Email,
+		"exp":      time.Now().Add(time.Hour * 72).Unix(),
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
 	t, err := token.SignedString([]byte(config.Config("SECRET")))
 	if err != nil {

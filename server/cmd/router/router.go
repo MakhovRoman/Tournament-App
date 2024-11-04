@@ -8,7 +8,7 @@ import (
 
 func SetupRouter(app *fiber.App) {
 	// Middleware
-	api := app.Group("/api")
+	api := app.Group("/api/v1")
 	api.Get("/", handler.Hello)
 
 	// Auth
