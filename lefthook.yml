@@ -4,5 +4,5 @@ pre-commit:
       run: echo $PATH
     lint-client:
       root: "client/"
-      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      glob: "*.{js,ts,jsx,tsx}"
       run: yarn biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
