@@ -22,7 +22,7 @@ import styles from "./not-found-page.module.scss";
 
 const loginRequest = async () => {
 	try {
-		const response = await fetch("/api/auth/login", {
+		const response = await fetch("/api/v1/auth/login", {
 			method: "POST",
 			body: JSON.stringify({
 				identity: "roman_stv@mail.ru",

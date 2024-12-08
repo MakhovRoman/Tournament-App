@@ -14,6 +14,7 @@ import (
 func ConnectDB() {
 	var err error
 
+	// TODO: Возвращать при запросе конфига все поля, чтобы обращаться к файлу 1 раз
 	dbHost := config.Config("DB_HOST")
 	p := config.Config("DB_PORT")
 	dbPort, err := strconv.ParseUint(p, 10, 32)
