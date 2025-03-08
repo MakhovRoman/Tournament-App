@@ -30,7 +30,6 @@ export default defineConfig({
 		port: 5500,
 		proxy: {
 			"/api": "http://0.0.0.0:8080",
-			"/auth": "http://0.0.0.0:8080",
 		},
 	},
 });

@@ -34,9 +34,30 @@ export const RegisterForm = () => {
 		checkDisabledSubmitButton(RegisterFieldsList, dirtyFields) ||
 		Object.keys(errors).length > 0;
 
-	const submitHandler = (data: RegisterFormFields) => {
-		console.log(data);
-	};
+	// const submitHandler = async (data: RegisterFormFields) => {
+	// 	try {
+	// 		const response = await fetch("api/v1/auth/register", {
+	// 			method: "POST",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 			},
+	// 			body: JSON.stringify({ ...data, username: data.first_name + data.last_name }),
+	// 		});
+	//
+	// 		// const loginResponse = await fetch('api/v1/auth/login', {
+	// 		// 	method: 'POST',
+	// 		// 	headers: {
+	// 		// 		'Content-Type': 'application/json'
+	// 		// 	},
+	// 		// 	body: JSON.stringify({
+	// 		// 		email: data.email,
+	// 		// 		password: data.password,
+	// 		// 	}),
+	// 		// });
+	// 	} catch (e) {
+	// 		console.error(e);
+	// 	}
+	// };
 
 	return (
 		<FormLayout submitHandler={handleSubmit(submitHandler)}>
@@ -52,6 +73,7 @@ export const RegisterForm = () => {
 			<InputComponent
 				control={control}
 				name={RegisterFields.PASSWORD}
+				ref={passwordRef}
 				type={"password"}
 				rules={RegisterFormValidateRules[RegisterFields.PASSWORD]}
 				errors={errors}
@@ -66,6 +88,7 @@ export const RegisterForm = () => {
 					validate: {
 						match: (value: string) => {
 							if (value !== passwordRef.current?.value) {
+								console.log(value, passwordRef);
 								return "Пароли не совпадают";
 							}
 

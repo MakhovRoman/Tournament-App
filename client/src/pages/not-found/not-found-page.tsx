@@ -20,26 +20,26 @@ import styles from "./not-found-page.module.scss";
 // 	}
 // };
 
-const loginRequest = async () => {
-	try {
-		const response = await fetch("/api/v1/auth/login", {
-			method: "POST",
-			body: JSON.stringify({
-				identity: "roman_stv@mail.ru",
-				password: "kek",
-			}),
-			headers: { "Content-Type": "application/json" },
-		});
-		console.log(response);
-		const { data } = await response.json();
-		localStorage.setItem("token", data);
-	} catch (error) {
-		console.error(error);
-	}
-};
+// const loginRequest = async () => {
+// 	try {
+// 		const response = await fetch("/api/v1/auth/login", {
+// 			method: "POST",
+// 			body: JSON.stringify({
+// 				identity: "roman_stv@mail.ru",
+// 				password: "kek",
+// 			}),
+// 			headers: { "Content-Type": "application/json" },
+// 		});
+// 		console.log(response);
+// 		const { data } = await response.json();
+// 		localStorage.setItem("token", data);
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// };
 
-// handlePostRequest();
-loginRequest();
+// // handlePostRequest();
+// loginRequest();
 export const NotFoundPage = () => {
 	return (
 		<div className={styles.notFoundPage}>

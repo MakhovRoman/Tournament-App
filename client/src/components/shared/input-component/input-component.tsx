@@ -12,6 +12,7 @@ export const InputComponent = <T extends FieldValues>({
 	rules,
 	error,
 	type,
+	ref,
 	setValue,
 	inputMode,
 	errors,
@@ -24,6 +25,7 @@ export const InputComponent = <T extends FieldValues>({
 				rules={rules}
 				render={({ field }) => (
 					<Input
+						ref={ref}
 						type={type}
 						inputMode={inputMode}
 						labelText={transformFieldName(name)}
